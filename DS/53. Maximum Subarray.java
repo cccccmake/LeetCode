@@ -18,7 +18,7 @@ class Solution {
 /*     Just sum them all. */
 /* 2. nums[i] < 0: */
 /* for(int n : nums){ */
-/*     sum = n; */
+/*     sum += n; */
 /*     res = max(sum, res); */
 /*     sum = 0; */
 /* } */
