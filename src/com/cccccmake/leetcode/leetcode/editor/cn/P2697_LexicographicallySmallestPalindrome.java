@@ -53,13 +53,22 @@ package com.cccccmake.leetcode.leetcode.editor.cn;
 public class P2697_LexicographicallySmallestPalindrome{
     public static void main(String[] args) {
         Solution solution = new P2697_LexicographicallySmallestPalindrome().new Solution();
-        
+        System.out.println(solution.makeSmallestPalindrome("egcfe"));
     }
 
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     public String makeSmallestPalindrome(String s) {
-
+        char[] chars = s.toCharArray();
+        for(int start = 0, end = chars.length - 1; start <= end; start++, end--){
+            if (chars[start] == chars[end]) {
+                continue;
+            }else{
+                if(chars[start] < chars[end]) chars[end] = chars[start];
+                else chars[start] = chars[end];
+            }
+        }
+        return new String(chars);
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

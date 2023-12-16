@@ -53,30 +53,7 @@ public class P542_Zero1Matrix{
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     public int[][] updateMatrix(int[][] mat) {
-        int row = mat.length;
-        int column = mat[0].length;
-        for(int i = 0; i < row; i++){
-            for(int j = 0; j < column; j++){
-                if (mat[i][j] == 0) {
-                    continue;
-                }else{
-                    if(i > 0 && i < row - 1 && j > 0 && j < column - 1){
-                        if(mat[i][])
-                    }else {
-                        if (i == 0) {
-
-                        } else if (i == row - 1) {
-
-                        }
-                        if (j == 0) {
-
-                        } else if (j == column - 1) {
-
-                        }
-                    }
-                }
-            }
-        }
+        return new int[0][0];
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)
