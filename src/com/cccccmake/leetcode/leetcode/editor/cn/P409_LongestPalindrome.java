@@ -54,7 +54,18 @@ public class P409_LongestPalindrome{
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     public int longestPalindrome(String s) {
-
+        int[] charRec = new int[128];
+        for(char c : s.toCharArray())
+            charRec[c]++;
+        int res = 0;
+        for(int elem : charRec){
+            res += elem / 2 * 2;
+            // the first time we meet a char in odd times
+            // we consider adding it at the very middle of the target string
+            if(elem % 2 == 1 && res % 2 == 0)
+                res++;
+        }
+        return res;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)
