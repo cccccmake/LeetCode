@@ -50,26 +50,35 @@ class Solution {
         int multi = 0;
         char[] chars = s.toCharArray();
         StringBuilder res = new StringBuilder();
+        // stores the string appears before '['
         Stack<String> partialStack = new Stack<>();
         Stack<Integer> repeatStack = new Stack<>();
         for(char c : chars){
+            // calculate the repeat times
             if(c <= '9' && c >= '0'){
                 multi = multi * 10 + c - '0';
             }else if(c == '['){
+                // need to store the current results before
+                // starting building the string within the brackets
+                // e.g., abc2[ab]
                 repeatStack.push(multi);
                 partialStack.push(res.toString());
+                // reset the repeat time and the StringBuilder for the current string
                 multi = 0;
                 res = new StringBuilder();
             }else if(c == ']'){
+                // end of the brackets
                 StringBuilder tmp = new StringBuilder();
                 int currentMulti = repeatStack.pop();
                 // tmp.append(partialStack.pop());
+                // repeat the current string
                 for(int i = 0; i < currentMulti; i++){
                     tmp.append(res);
                 }
+                // don't forget the string before the '['
                 res = new StringBuilder(partialStack.pop() + tmp);
             }else{
-                // if(c >= 'a' && c <= 'z'){
+                // StringBuilder for the current string
                 res.append(c);
             }
         }
