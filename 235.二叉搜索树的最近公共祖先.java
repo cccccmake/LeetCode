@@ -16,6 +16,7 @@
  */
 
 class Solution {
+    TreeNode res = null;
     public TreeNode lowestCommonAncestorNormal(TreeNode root, TreeNode p, TreeNode q) {
         if (root == p || root == q || root == null)
             return root;
@@ -31,24 +32,21 @@ class Solution {
             return null;
     }
 
-    // optimized version
+    // recursive version
     public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
-        if (root == p || root == q || root == null)
-            return root;
+        // Consider the feature of binary search tree
+        // Both p & q's value is SMALLER than root.val => search LEFT subtree
+        // Both p & q's value is LARGER than root.val => search RIGHT subtree
         if (p.val < root.val && q.val < root.val) {
-            TreeNode left = lowestCommonAncestor(root.left, p, q);
-            TreeNode right = lowestCommonAncestor(root.left, p, q);
+            res = lowestCommonAncestor(root.left, p, q);
         }else if (p.val > root.val && q.val > root.val){
-
+            res = lowestCommonAncestor(root.right, p, q);
+        }else{
+            // p.val > root.val && q.val < root.val
+            // OR p.val < root.val && q.val > root.val
+            res = root;
         }
-        if (left != null && right != null)
-            return root;
-        else if (left == null)
-            return right;
-        else if (right == null)
-            return left;
-        else
-            return null;
+        return res;
     }
 }
 // @lc code=end
