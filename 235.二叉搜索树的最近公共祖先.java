@@ -33,7 +33,7 @@ class Solution {
     }
 
     // recursive version
-    public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+    public TreeNode lowestCommonAncestorRecursive(TreeNode root, TreeNode p, TreeNode q) {
         // Consider the feature of binary search tree
         // Both p & q's value is SMALLER than root.val => search LEFT subtree
         // Both p & q's value is LARGER than root.val => search RIGHT subtree
@@ -47,6 +47,22 @@ class Solution {
             res = root;
         }
         return res;
+    }
+
+    // iteration version
+    public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+        // Consider the feature of binary search tree
+        // Both p & q's value is SMALLER than root.val => search LEFT subtree
+        // Both p & q's value is LARGER than root.val => search RIGHT subtree
+        while(root != null){
+            if(root.val < p.val && root.val < q.val)
+                root = root.right;
+            else if(root.val > p.val && root.val > q.val)
+                root = root.left;
+            else
+                break;
+        }
+        return root;
     }
 }
 // @lc code=end
