@@ -29,6 +29,10 @@ class Solution {
     }
 
     public boolean dfs(List<List<Integer>> adjacency, int[] flags, int courseNr) {
+        /*
+         * Consider the base cases of this recursion function: flags[courseNr] == -1 or flags[courseNr] == 1
+         * Why it works => flags[courseNr] = 0 BY DEFAULT
+         */
         if (flags[courseNr] == 1)
             return false;
         if (flags[courseNr] == -1)
