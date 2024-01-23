@@ -17,32 +17,26 @@
  */
 class Solution {
     public ListNode deleteDuplicates(ListNode head) {
-        if (head == null)
-            return head;
         ListNode dummyNode = new ListNode(-1);
         dummyNode.next = head;
-        ListNode prev = dummyNode, cur = head, nxt = cur.next;
-        // as we're accessing values from cur and nxt
-        // therefore they cannot be null
-        while (cur != null && nxt != null) {
-            if (cur.val == nxt.val) {
-                // find the 1st elem that differs to cur.val
-                while (nxt != null && cur.val == nxt.val) {
-                    nxt = nxt.next;
+        ListNode prev = dummyNode;
+        ListNode cur = head;
+        while (cur != null && cur.next != null) {
+            if (cur.val == cur.next.val) {
+                // why only cur.next here
+                // cur.next is the next node of the cur node...
+                while (cur.next != null && cur.val == cur.next.val) {
+                    cur = cur.next;
                 }
-                // update prev, cur, and nxt
-                cur = nxt;
+                // now cur points to the very last redandunt element, move it
+                // if comment out this line, the repeated element will be kept only one
+                cur = cur.next;
+                // update the prev's next pointer
                 prev.next = cur;
-                // avoid NullPointerException here
-                if (nxt == null)
-                    break;
-                else
-                    nxt = nxt.next;
             } else {
-                // no same element, update as normal, 1 step forward
+                // otherwise, move forward...
                 prev = cur;
-                cur = nxt;
-                nxt = nxt.next;
+                cur = cur.next;
             }
         }
         return dummyNode.next;
